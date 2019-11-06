@@ -1,11 +1,16 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import hashlib
+import hashlib
 def md5(p):
     m = hashlib.new('md5')
     m.update(p.encode('utf-8'))
     return m.hexdigest()
 
+def sha256(p):
+    s = hashlib.new('sha256')
+    s.update(p.encode('utf-8'))
+    return s.hexdigest()
 
 
 

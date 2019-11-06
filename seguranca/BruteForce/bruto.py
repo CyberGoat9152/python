@@ -6,11 +6,11 @@ def md5(p):
     m.update(p.encode('utf-8'))
     return m.hexdigest()
 
+def sha256(p):
+    s = hashlib.new('sha256')
+    s.update(p.encode('utf-8'))
+    return s.hexdigest()
 
-
-
-
-a = open("pao.csv", "w")
 dic = ("a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","0","1","2","3","4","5","6","7","8","9")
 for l1 in dic:
     for l2 in dic:
@@ -20,9 +20,6 @@ for l1 in dic:
                     for l6 in dic:
                         for l7 in dic:
                             for l8 in dic:
-                                print(l1+l2+l3+l4+l5+l6+l7+l8)
-                                print(md5(l1+l2+l3+l4+l5+l6+l7+l8))
-                                a.write(md5(l1+l2+l3+l4+l5+l6+l7+l8)+","+l1+l2+l3+l4+l5+l6+l7+l8+";\n")
-a.close()
+                                print(sha256(l1+l2+l3+l4+l5+l6+l7+l8))
 exit()
             
