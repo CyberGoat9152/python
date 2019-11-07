@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
+# -*- coding: utf-8  -*-
 import hashlib
 def md5(p):
     m = hashlib.new('md5')
