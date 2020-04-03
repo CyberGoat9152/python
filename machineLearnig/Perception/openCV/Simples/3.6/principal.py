@@ -3,6 +3,14 @@
 import cv2
 recognizer = cv2.face.createEigenFaceRecognizer()
 recognizer.load("TrainingData.xml")
+
+lid = {
+	1:'arthur'
+}
+
+
+
+
 def main():
 	face_cascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
 	webcam = cv2.VideoCapture(0)
@@ -11,15 +19,12 @@ def main():
 		frame_pretobranco = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 		rosto = face_cascade.detectMultiScale(frame_pretobranco, 1.3 , 7)
 		for (x, y, w, h) in rosto:
-			cv2.rectangle(frame, (x,y), (x+w,y+h), (0,255,0), 2)
+			cv2.rectangle(frame, (x,y), (x+w,y+h), (225,105,65), 2)
 			rosto = cv2.resize(frame_pretobranco[y:y+h, x:x+w], (50,50))
-			print(recognizer.predict(rosto))
-			if (recognizer.predict(rosto)[0] == 1) and (recognizer.predict(rosto)[1] < 1100):
-				cv2.putText(frame, "papa", (x + 50,y + h + 5 ), cv2.FONT_HERSHEY_COMPLEX_SMALL, 1, (0, 255, 0), 1, cv2.LINE_AA )
-			if (recognizer.predict(rosto)[0] == 2) and (recognizer.predict(rosto)[1] < 1100) :
-				cv2.putText(frame, "heteroTop", (x + 86,y + h + 5), cv2.FONT_HERSHEY_COMPLEX_SMALL, 1, (0, 255, 0), 1, cv2.LINE_AA )
-			print(recognizer.predict(rosto))
-			
+			pred = recognizer.predict(rosto)
+			print(pred)
+			if (pred[1] < 2300):
+				cv2.putText(frame, lid[pred[0]], (x + 50,y + h + 25 ), cv2.FONT_HERSHEY_COMPLEX_SMALL, 1, (225, 105, 65), 1, cv2.LINE_AA )
 		cv2.imshow("Reconhecimento", frame)
 		if(cv2.waitKey(1) & 0xFF == ord('q')):
 			break

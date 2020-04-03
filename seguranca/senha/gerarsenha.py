@@ -1,14 +1,20 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 #-*- coding: utf-8 -*-
 from hashlib import md5
 from sys import argv
-
-def encode( senha ):
+from os import system
+def encodes( senha ):
     senhanova = md5()
-    senhanova.update( senha )
+    senhanova.update( senha.encode( 'UTF-8' ) )
     return senhanova.hexdigest()
 def exibe():
-    print("Senha digitada:\t{}\nSenha Gerada:\t{}".format(argv[1], encode(argv[1]) ) )
+    system('clear')
+    strload = "\tSenha digitada:\t{}\n\tSenha Gerada:\t{} ".format(argv[1], encodes(argv[1]) )
+    mard = ''
+    mard = '+'+'-'*( len(strload) - 10 )+'+'
+    print(mard)
+    print(strload)
+    print(mard)
 
 def main():
     exibe()

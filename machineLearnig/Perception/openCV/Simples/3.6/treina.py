@@ -10,8 +10,7 @@ def getImagesWithID(path):
     """
         recebe o nome da pasta onde as fotos estao e retorna uma tupla sendo:
             [0] -array ids
-            [1] -vetor arrays faces
-            
+            [1] -vetor arrays faces            
     """
     faces = []
     IDs = []
